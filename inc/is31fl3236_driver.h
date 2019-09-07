@@ -78,7 +78,7 @@ typedef struct
 	uint8_t RGB_Mode_Color_3;
 } IS31FL3236_InitTypeDef;
 
-// Handle struct typedef.
+// Device-handle struct typedef.
 typedef struct
 {
 	IS31FL3236_InitTypeDef Init;

@@ -1,0 +1,114 @@
+OLD VERSION
+---------------------------------------------------------------------------
+
+
+IS31FL3236_STM32_HAL_Driver Project Documentation
+-------------------------------------------------
+
+IS31FL3236_STM32_HAL_Driver is an driver implementation for the CubeMX HAL environment
+running on the STM32 family of microcontroller devices. The purpose of this software
+is to provide a basic hardware abstraction level for the IS31FL3236 LED-Driver chip.
+
+The library itself is written in C and can be used in C as well as C++ STM32 CubeMX
+projects.
+
+
+Including the library
+---------------------
+
+In order to use this library, is31fl3236_driver.h has to be included in the project.
+This file contains all necessary declarations in order to use the library correctly.
+
+
+Using the IS31FL3236_STM32_HAL_Driver library
+---------------------------------------------
+
+Initialisation of a new device handle
+- - - - - - - - - - - - - - - - - - -
+
+In order to support multiple IS31FL3236 devices on the same STM32 microcontroller,
+this library uses seperately initialised handles to refer to a specific IS31FL3236
+chip. All necessary hardware information, such as the I2C bus, SDN pin, etc., has
+to be provided in order for the initialisation to be complete.
+
+The initialisation of a new IS31FL3236 is shown by the following piece of example
+code.
+
+<code>
+// Handle pointer for possible global access:
+IS31FL3236_HandleTypeDef* ptr_h_led_drvr_foo;
+</code>
+
+<code>
+IS31FL3236_HandleTypeDef h_led_drvr_foo;
+h_led_drvr_foo.I2C_Bus = hi2c1;
+h_led_drvr_foo.I2C_Device_Address = IS31FL3236_GET_I2C_ADDR(IS31FL3236_I2C_AD_TO_GND);
+h_led_drvr_foo.I2C_Transmit_Timeout_Milliseconds = 10; // 10ms is default.
+h_led_drvr_foo.Chip_Enable_Signal_Port = GPIOA;
+h_led_drvr_foo.Chip_Enable_Signal_Pin = GPIO_PIN_10;
+
+// Optional [
+h_led_drvr_foo.RGB_Mode_Color_1 = IS31FL3236_RGB_CONFIG_RED;
+h_led_drvr_foo.RGB_Mode_Color_2 = IS31FL3236_RGB_CONFIG_GREEN;
+h_led_drvr_foo.RGB_Mode_Color_3 = IS31FL3236_RGB_CONFIG_BLUE;
+// ]
+
+ptr_h_led_drvr_foo = &h_led_drvr_foo; // Store the pointer to the handle in a (global) variable for future access in other functions.
+
+IS31FL3236_Init(ptr_h_led_drvr_foo); // Init the handle.
+</code>
+
+Note that <code>IS31FL3236_Init</code> has to be called with a handle before the
+handle gets used by any other function.
+
+The <code>IS31FL3236_Init</code> performes a device reset, disables the software
+device shutdown and enables the IS31FL3236 chip via the enable/SDB signal.
+
+After the initialisation the driver is operational and can be used.
+
+
+Update cycles of the IS31Fl3236
+- - - - - - - - - - - - - - - -
+
+In order to allow instant switching from one configuration to another, the
+IS31FL3236 chip latches the recieved data only when an update command is sent
+to the device via the I2C bus.
+
+By calling <code>IS31FL3236_Update</code> the device latches all recieved data
+to the led control circuitry.
+
+
+Reset, software shutdown and chip enable
+- - - - - - - - - - - - - - - - - - - - -
+
+By calling <code>IS31FL3236_Reset</code> the device gets reset. What a reset
+command does can be read in the device datasheet of the IS31Fl3236.
+
+The <code>IS31FL3236_SetSoftwareShutdown</code> sets the software shutdown mode
+of the deivce.
+
+<code>IS31FL3236_SetChipEnable</code> controlls the hardware chip enable (SDB)
+signal of the chip.
+
+
+Random LED ON/OFF example
+-------------------------
+
+Random RGB LED example
+----------------------
+
+IS31FL3236_WritePWM Function
+----------------------------
+
+Declaration:
+void IS31FL3236_WritePWM(IS31FL3236_HandleTypeDef* handle, uint8_t channel, uint8_t pwm_value);
+
+Parameters:
+- handle [IS31FL3236_HandleTypeDef*]: The handle instance of the IS31FL3236 chip.
+- channel [uint8_t]: The channel number (0 - 35) to change the PWM value of.
+- pwm_value [uint8_t]: The new PWM-value to write to the given channel.
+
+Description:
+This function changes the PWM value of a given LED channel (0 - 35). The function
+<code>IS31FL3236_Update</code> has to be called afterwards to update the LED
+channels to the new value.
