@@ -5,7 +5,7 @@
  * BREIF :			Hardware abstraction layer for the IS31FL3236
  * 					IC on STM32 (ARM) hardware. (Source code)
  *
- * Copyright (c) 2019 Johannes Berndorfer. All rights reserved.
+ * Copyright (C) 2019 Johannes Berndorfer.
  * ---------------------------------------------------------------
  * DATE CREATED :	28.04.2019
  * VERSION :		1.0
@@ -13,6 +13,22 @@
  * DESCRIPTION :
  * 		This file contains the source code of the IS31FL3236
  * 		library for the STM32 platform.
+ *
+ * LICENSE :
+ *		Copyright (C) 2019 Johannes Berndorfer
+ *
+ *		This program is free software: you can redistribute it and/or modify
+ *		it under the terms of the GNU General Public License as published by
+ *		the Free Software Foundation, either version 3 of the License, or
+ *		(at your option) any later version.
+ *
+ *		This program is distributed in the hope that it will be useful,
+ *		but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *		MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *		GNU General Public License for more details.
+ *
+ *		You should have received a copy of the GNU General Public License
+ *		along with this program. If not, see <https://www.gnu.org/licenses/>.
  *
  *--------------------------------------------------------------*/
 
