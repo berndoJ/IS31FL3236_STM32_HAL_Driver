@@ -17,3 +17,12 @@ void IS31FL3236_WriteRGBPWM(IS31FL3236_HandleTypeDef* handle, uint8_t rgb_channe
 This function changes the color of a given RGB LED channel (0 - 11). The function
 `IS31FL3236_Update` has to be called afterwards to update the LED
 channels to the new value.
+
+### Example
+
+```c
+// Set the color of RGB channel 0 to #FF00FF (Violet / Purple)
+IS31FL3236_WriteRGBPWM(p_hIS31FL3236, 0, 0xFF, 0x00, 0xFF);
+// Send the chip an update command.
+IS31FL3236_Update(p_hIS31FL3236);
+```

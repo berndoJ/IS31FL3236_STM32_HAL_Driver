@@ -31,6 +31,8 @@ extern "C"
 
 #include <stm32f1xx_hal.h> // Include ST's HAL library for the STM32. The correct library for the platform has to be chosen.
 
+// Definitions of values for updating and changing settings of the IC. These values have been retrieved from the IS31FL3236's datasheet.
+
 #define IS31FL3236_I2C_AD_TO_GND				0x00
 #define IS31FL3236_I2C_AD_TO_SCL				0x02
 #define IS31FL3236_I2C_AD_TO_SDA				0x04

@@ -9,3 +9,5 @@ The IS31FL3236 chip is a general purpose digital LED driver chip which can be co
 ## How?
 
 To get started using this library refer to the [Getting Started](https://github.com/berndoJ/IS31FL3236_STM32_HAL_Driver/wiki/Getting-Started) page. A further description on how to use this library can be found at the [Using the IS31FL3236 STM32 HAL Driver Library](https://github.com/berndoJ/IS31FL3236_STM32_HAL_Driver/wiki/Using-the-IS31FL3236-STM32-HAL-Driver-Library) wiki-page.
+
+If you are experiencing any issues, feel free to open a new issue on the GitHub.
